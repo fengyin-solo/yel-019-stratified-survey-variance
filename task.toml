@@ -1,0 +1,27 @@
+schema_version = "1.3"
+
+[task]
+name = "local/stratified-survey-variance"
+authors = [{ name = "fengyin" }]
+description = "Estimate a stratified population mean and its finite-population corrected standard error."
+keywords = ["statistics", "survey", "variance", "stratification"]
+
+[agent]
+timeout_sec = 3600
+
+[environment]
+build_timeout_sec = 600
+cpus = 2
+memory_mb = 2048
+storage_mb = 4096
+gpus = 0
+allow_internet = true
+
+[verifier]
+timeout_sec = 600
+
+[metadata]
+difficulty = "hard"
+category = "statistical-computing"
+tags = ["survey-sampling", "finite-population", "confidence-interval", "canonical-json"]
+expert_time_estimate = "65m"

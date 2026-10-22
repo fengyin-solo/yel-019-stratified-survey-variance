@@ -1,0 +1,108 @@
+{
+  "gate_tests": [
+    "test_outputs.py::test_stratified_estimate_uses_population_weights",
+    "test_outputs.py::test_standard_error_uses_finite_population_correction",
+    "test_outputs.py::test_stratum_contributions_follow_the_formula",
+    "test_outputs.py::test_census_stratum_has_zero_variance_contribution",
+    "test_outputs.py::test_confidence_interval_uses_requested_level",
+    "test_outputs.py::test_top_level_key_set_is_exact"
+  ],
+  "schema_version": 1,
+  "tests": {
+    "test_outputs.py::test_absent_parent_is_io_failure": {
+      "priority": "recovery",
+      "rationale": "absent parent is io failure；这验证失败、重跑或恢复不变量，失败会造成旧数据和台账不一致。",
+      "weight": 0.04
+    },
+    "test_outputs.py::test_bad_input_preserves_existing_output": {
+      "priority": "recovery",
+      "rationale": "bad input preserves existing output；这验证失败、重跑或恢复不变量，失败会造成旧数据和台账不一致。",
+      "weight": 0.04
+    },
+    "test_outputs.py::test_boolean_population_is_refused": {
+      "priority": "boundary",
+      "rationale": "boolean population is refused；这验证公开边界和拒收口径，失败会产生越界输入或错误放行。",
+      "weight": 0.03
+    },
+    "test_outputs.py::test_confidence_level_bounds_are_enforced": {
+      "priority": "supporting",
+      "rationale": "confidence level bounds are enforced；这补充验证外围业务约束，失败会降低交付完整性和可运维性。",
+      "weight": 0.017
+    },
+    "test_outputs.py::test_duplicate_json_key_is_refused": {
+      "priority": "boundary",
+      "rationale": "duplicate json key is refused；这验证公开边界和拒收口径，失败会产生越界输入或错误放行。",
+      "weight": 0.03
+    },
+    "test_outputs.py::test_output_has_exact_key_order": {
+      "priority": "core",
+      "rationale": "output has exact key order；这是任务的主交付路径，失败意味着核心业务结果不可用。",
+      "weight": 0.3
+    },
+    "test_outputs.py::test_repeat_run_is_byte_identical": {
+      "priority": "recovery",
+      "rationale": "repeat run is byte identical；这验证失败、重跑或恢复不变量，失败会造成旧数据和台账不一致。",
+      "weight": 0.04
+    },
+    "test_outputs.py::test_sample_larger_than_population_is_refused": {
+      "priority": "boundary",
+      "rationale": "sample larger than population is refused；这验证公开边界和拒收口径，失败会产生越界输入或错误放行。",
+      "weight": 0.03
+    },
+    "test_outputs.py::test_strata_output_preserves_input_order": {
+      "priority": "core",
+      "rationale": "strata output preserves input order；这是任务的主交付路径，失败意味着核心业务结果不可用。",
+      "weight": 0.3
+    },
+    "test_outputs.py::test_stratum_key_set_is_exact": {
+      "priority": "schema",
+      "rationale": "stratum key set is exact；这验证结构、类型或序列化外观，失败会使下游无法稳定消费结果。",
+      "weight": 0.023
+    },
+    "test_outputs.py::test_stratum_results_have_exact_keys": {
+      "priority": "schema",
+      "rationale": "stratum result objects use the exact five-key schema；这验证结构、类型或序列化外观，失败会使下游无法稳定消费结果。",
+      "weight": 0.023
+    },
+    "test_outputs.py::test_successful_run_is_quiet": {
+      "priority": "supporting",
+      "rationale": "successful run is quiet；这补充验证外围业务约束，失败会降低交付完整性和可运维性。",
+      "weight": 0.017
+    },
+    "test_outputs.py::test_survey_identifier_is_strict[ leading]": {
+      "priority": "supporting",
+      "rationale": "survey identifier is strict；这补充验证外围业务约束，失败会降低交付完整性和可运维性。",
+      "weight": 0.016
+    },
+    "test_outputs.py::test_survey_identifier_is_strict[AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]": {
+      "priority": "supporting",
+      "rationale": "survey identifier is strict；这补充验证外围业务约束，失败会降低交付完整性和可运维性。",
+      "weight": 0.016
+    },
+    "test_outputs.py::test_survey_identifier_is_strict[A\\nB]": {
+      "priority": "supporting",
+      "rationale": "survey identifier is strict；这补充验证外围业务约束，失败会降低交付完整性和可运维性。",
+      "weight": 0.016
+    },
+    "test_outputs.py::test_survey_identifier_is_strict[A]": {
+      "priority": "supporting",
+      "rationale": "survey identifier is strict；这补充验证外围业务约束，失败会降低交付完整性和可运维性。",
+      "weight": 0.016
+    },
+    "test_outputs.py::test_survey_identifier_is_strict[trailing ]": {
+      "priority": "supporting",
+      "rationale": "survey identifier is strict；这补充验证外围业务约束，失败会降低交付完整性和可运维性。",
+      "weight": 0.016
+    },
+    "test_outputs.py::test_too_few_responses_are_refused": {
+      "priority": "boundary",
+      "rationale": "too few responses are refused；这验证公开边界和拒收口径，失败会产生越界输入或错误放行。",
+      "weight": 0.03
+    }
+  },
+  "weight_policy": {
+    "basis": "business_priority",
+    "core_min_share": 0.5,
+    "version": 1
+  }
+}
