@@ -52,7 +52,12 @@
     "test_outputs.py::test_strata_output_preserves_input_order": {
       "priority": "core",
       "rationale": "strata output preserves input order；这是任务的主交付路径，失败意味着核心业务结果不可用。",
-      "weight": 0.3
+      "weight": 0.28
+    },
+    "test_outputs.py::test_survey_identifier_bounds_are_inclusive": {
+      "priority": "boundary",
+      "rationale": "survey identifier bounds are inclusive；这验证调查编号的合法端点与相邻越界，失败会误拒合法批号或放行非法编号。",
+      "weight": 0.02
     },
     "test_outputs.py::test_stratum_key_set_is_exact": {
       "priority": "schema",

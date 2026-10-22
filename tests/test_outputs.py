@@ -156,6 +156,23 @@ def test_survey_identifier_is_strict(tmp_path, survey_id):
     assert result.returncode == 1 and result.stderr == "运行拒收: BAD_INPUT\n" and not output.exists()
 
 
+def test_survey_identifier_bounds_are_inclusive(tmp_path):
+    """题面：「`survey_id` 由两至四十八个字符组成；编号不能以空白包住，也不可在内部夹控制字符。」"""
+    accepted = []
+    for index, identifier in enumerate(("A1", "A" * 48), 1):
+        payload = sample()
+        payload["survey_id"] = identifier
+        accepted.append(invoke(tmp_path, payload, name=f"case-a{index}"))
+    rejected = []
+    for index, identifier in enumerate(("A", "A" * 49), 1):
+        payload = sample()
+        payload["survey_id"] = identifier
+        rejected.append(invoke(tmp_path, payload, name=f"case-b{index}"))
+    assert all(result.returncode == 0 and output.is_file() for result, _, output in accepted)
+    assert all(result.returncode == 1 and result.stderr == "运行拒收: BAD_INPUT\n" and not output.exists()
+               for result, _, output in rejected)
+
+
 def test_boolean_population_is_refused(tmp_path):
     """题面：「布尔值不能当整数或小数。」"""
     payload = sample()
